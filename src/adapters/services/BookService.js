@@ -27,7 +27,8 @@ class BooksService {
             readPage,
             reading
         );
-        this._booksRepository.addBook(book);
+        const bookId = this._booksRepository.addBook(book);
+        return bookId; // make sure to return the id
     }
 
     getBooks() {

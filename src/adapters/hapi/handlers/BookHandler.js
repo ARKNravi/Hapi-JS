@@ -11,13 +11,66 @@ class BooksHandler {
     }
 
     postBookHandler(request, h) {
-        this._booksService.addBook(request.payload);
-        return h
-            .response({
-                status: "success",
-                message: "Buku berhasil ditambahkan",
-            })
-            .code(201);
+        try {
+            const {
+                name,
+                year,
+                author,
+                summary,
+                publisher,
+                pageCount,
+                readPage,
+                reading,
+            } = request.payload;
+
+            // Check if name attribute is present
+            if (!name) {
+                return h
+                    .response({
+                        status: "fail",
+                        message: "Gagal menambahkan buku. Mohon isi nama buku",
+                    })
+                    .code(400);
+            }
+
+            // Check if readPage is greater than pageCount
+            if (readPage > pageCount) {
+                return h
+                    .response({
+                        status: "fail",
+                        message:
+                            "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount",
+                    })
+                    .code(400);
+            }
+
+            const bookId = this._booksService.addBook({
+                name,
+                year,
+                author,
+                summary,
+                publisher,
+                pageCount,
+                readPage,
+                reading,
+            });
+            return h
+                .response({
+                    status: "success",
+                    message: "Buku berhasil ditambahkan",
+                    data: {
+                        bookId: bookId,
+                    },
+                })
+                .code(201);
+        } catch (error) {
+            return h
+                .response({
+                    status: "fail",
+                    message: "Gagal menambahkan buku. Mohon isi nama buku",
+                })
+                .code(400);
+        }
     }
 
     getBooksHandler() {

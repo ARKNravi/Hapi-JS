@@ -8,6 +8,7 @@ class BooksRepository {
 
     addBook(book) {
         this._books.push(book);
+        return book.id; // make sure to return the id
     }
 
     getBooks() {
