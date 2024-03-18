@@ -1,4 +1,3 @@
-// src/adapters/services/BooksService.js
 const Book = require("../entities/Book");
 const BooksRepository = require("../repositories/BookRepository");
 

@@ -1,4 +1,3 @@
-// src/adapters/repositories/BooksRepository.js
 const book = require("../entities/Book");
 
 class BooksRepository {
@@ -8,7 +7,7 @@ class BooksRepository {
 
     addBook(book) {
         this._books.push(book);
-        return book.id; // make sure to return the id
+        return book.id; 
     }
 
     getBooks() {

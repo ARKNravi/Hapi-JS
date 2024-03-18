@@ -1,4 +1,3 @@
-// src/adapters/hapi/routes/booksRoutes.js
 const BooksHandler = require("../handlers/bookHandler");
 
 const routes = [

@@ -1,4 +1,3 @@
-// src/adapters/hapi/handlers/BooksHandler.js
 const BooksRepository = require("../../repositories/BookRepository");
 const BooksService = require("../../services/BookService");
 
@@ -23,7 +22,6 @@ class BooksHandler {
                 reading,
             } = request.payload;
 
-            // Check if name attribute is present
             if (!name) {
                 return h
                     .response({
@@ -33,7 +31,6 @@ class BooksHandler {
                     .code(400);
             }
 
-            // Check if readPage is greater than pageCount
             if (readPage > pageCount) {
                 return h
                     .response({
@@ -113,7 +110,6 @@ class BooksHandler {
             reading,
         } = request.payload;
 
-        // Check if name attribute is present
         if (!name) {
             return h
                 .response({
@@ -123,7 +119,6 @@ class BooksHandler {
                 .code(400);
         }
 
-        // Check if readPage is greater than pageCount
         if (readPage > pageCount) {
             return h
                 .response({
@@ -154,7 +149,6 @@ class BooksHandler {
                     })
                     .code(404);
             }
-            // handle other errors
         }
     }
 
@@ -176,7 +170,6 @@ class BooksHandler {
                     })
                     .code(404);
             }
-            // handle other errors
         }
     }
 }
