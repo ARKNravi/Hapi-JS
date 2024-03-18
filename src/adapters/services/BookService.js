@@ -28,11 +28,16 @@ class BooksService {
             reading
         );
         const bookId = this._booksRepository.addBook(book);
-        return bookId; // make sure to return the id
+        return bookId;
     }
 
     getBooks() {
-        return this._booksRepository.getBooks();
+        const books = this._booksRepository.getBooks();
+        return books.map(({ id, name, publisher }) => ({
+            id,
+            name,
+            publisher,
+        }));
     }
 
     getBookById(id) {

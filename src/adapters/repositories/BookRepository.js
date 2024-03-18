@@ -23,6 +23,8 @@ class BooksRepository {
         const index = this._books.findIndex((book) => book.id === id);
         if (index !== -1) {
             this._books[index] = { ...this._books[index], ...updatedData };
+        } else {
+            throw new Error("Book not found");
         }
     }
 
@@ -30,6 +32,8 @@ class BooksRepository {
         const index = this._books.findIndex((book) => book.id === id);
         if (index !== -1) {
             this._books.splice(index, 1);
+        } else {
+            throw new Error("Book not found");
         }
     }
 }
