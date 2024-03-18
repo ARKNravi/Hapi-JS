@@ -9,7 +9,7 @@ const routes = [
     {
         method: "GET",
         path: "/books",
-        handler: () => new BooksHandler().getBooksHandler(),
+        handler: (request, h) => new BooksHandler().getBooksHandler(request, h),
     },
     {
         method: "GET",

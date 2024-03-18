@@ -70,8 +70,20 @@ class BooksHandler {
         }
     }
 
-    getBooksHandler() {
-        const books = this._booksService.getBooks();
+    getBooksHandler(request) {
+        const { reading, finished, name } = request.query;
+        let books;
+        if (reading !== undefined) {
+            const readingStatus = reading === "1";
+            books = this._booksService.getBooksByReadingStatus(readingStatus);
+        } else if (finished !== undefined) {
+            const finishedStatus = finished === "1";
+            books = this._booksService.getBooksByFinishedStatus(finishedStatus);
+        } else if (name !== undefined) {
+            books = this._booksService.getBooksByName(name);
+        } else {
+            books = this._booksService.getBooks();
+        }
         return {
             status: "success",
             data: {
@@ -171,6 +183,16 @@ class BooksHandler {
                     .code(404);
             }
         }
+    }
+    getReadingBooksHandler(request) {
+        const isReading = request.query.reading === "1";
+        const books = this._booksService.getReadingBooks(isReading);
+        return {
+            status: "success",
+            data: {
+                books,
+            },
+        };
     }
 }
 

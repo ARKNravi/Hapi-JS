@@ -7,7 +7,7 @@ class BooksRepository {
 
     addBook(book) {
         this._books.push(book);
-        return book.id; 
+        return book.id;
     }
 
     getBooks() {
@@ -34,6 +34,19 @@ class BooksRepository {
         } else {
             throw new Error("Book not found");
         }
+    }
+    getBooksByReadingStatus(readingStatus) {
+        return this._books.filter((book) => book.reading === readingStatus);
+    }
+
+    getBooksByFinishedStatus(finishedStatus) {
+        return this._books.filter((book) => book.finished === finishedStatus);
+    }
+    getBooksByName(name) {
+        const lowerCaseName = name.toLowerCase();
+        return this._books.filter((book) =>
+            book.name.toLowerCase().includes(lowerCaseName)
+        );
     }
 }
 

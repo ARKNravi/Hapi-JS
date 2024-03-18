@@ -50,6 +50,33 @@ class BooksService {
     deleteBookById(id) {
         this._booksRepository.deleteBookById(id);
     }
+    getBooksByReadingStatus(readingStatus) {
+        const books =
+            this._booksRepository.getBooksByReadingStatus(readingStatus);
+        return books.map(({ id, name, publisher }) => ({
+            id,
+            name,
+            publisher,
+        }));
+    }
+
+    getBooksByFinishedStatus(finishedStatus) {
+        const books =
+            this._booksRepository.getBooksByFinishedStatus(finishedStatus);
+        return books.map(({ id, name, publisher }) => ({
+            id,
+            name,
+            publisher,
+        }));
+    }
+    getBooksByName(name) {
+        const books = this._booksRepository.getBooksByName(name);
+        return books.map(({ id, name, publisher }) => ({
+            id,
+            name,
+            publisher,
+        }));
+    }
 }
 
 module.exports = BooksService;
